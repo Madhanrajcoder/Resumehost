@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix FE run build",
+    "start:backend": "node --env-file-if-exists=.env --env-file-if-exists=.env.local BE/start-local.mjs"
+  },
+  "dependencies": {
+    "@neon/config": "^1.14.5",
+    "@neon/env": "^2.1.8"
+  }
+}

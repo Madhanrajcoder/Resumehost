@@ -53,15 +53,20 @@ Render’s free backend sleeps after 15 idle minutes and may take about a minute
 
 ## Enable shared game scores with Neon
 
-Create a free [Neon PostgreSQL project](https://neon.com/pricing) and open **Connect** in the Neon console. Copy the project’s JDBC connection details. In Render, open the **backend** service’s **Environment** page and set these variables. [Neon connection details](https://neon.com/docs/connect/connect-from-any-app) · [Render environment settings](https://render.com/docs/configure-environment-variables)
+Run `neon deploy` from the linked repository root to refresh the Postgres connection variables in the ignored `.env.local` or `.env` file. Build and start the backend from the repository root, then start the frontend in a second terminal. [Neon environment variables](https://neon.com/docs/cli/env)
 
-| Key | Value |
-| --- | --- |
-| `GAMES_DATABASE_URL` | `jdbc:postgresql://<neon-host>/<database>?sslmode=verify-full&sslfactory=org.postgresql.ssl.DefaultJavaSSLFactory` |
-| `GAMES_DATABASE_USERNAME` | The database role from Neon |
-| `GAMES_DATABASE_PASSWORD` | The database password from Neon |
+```powershell
+mvn.cmd -f BE/pom.xml package
+npm.cmd run start:backend
+```
 
-Choose **Save and deploy** on the backend. Spring Boot applies the Flyway database migration on startup. Open **Games → Quick Math → View leaderboard** and create a test player. Use the player’s key on a second browser to confirm its saved scores follow it.
+```powershell
+npm.cmd --prefix FE run dev
+```
+
+To activate shared scores on your hosted site, set `DATABASE_URL` and `DATABASE_URL_UNPOOLED` in the **backend** service’s **Environment** page on Render and choose **Save and deploy**. Use the pooled URL for `DATABASE_URL` and the direct URL for `DATABASE_URL_UNPOOLED`. Spring Boot uses the PostgreSQL JDBC driver and applies Flyway migrations on startup using the direct connection. [Neon connection pooling](https://neon.com/docs/connect/connection-pooling) · [Render environment settings](https://render.com/docs/configure-environment-variables)
+
+Open **Games → Quick Math → View leaderboard** and create a test player. Use the player’s key on a second browser to confirm its saved scores follow it. The backend also supports the existing `GAMES_DATABASE_URL`, `GAMES_DATABASE_USERNAME`, and `GAMES_DATABASE_PASSWORD` settings for a separately configured JDBC connection.
 
 Memory Match, Reaction Time, and Quick Math each rank the best score per player. Players explicitly share scores earned during their visit. The leaderboard uses browser-reported results for casual play. Local gameplay and browser scores are available when the database is unavailable.
 
