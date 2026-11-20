@@ -310,7 +310,7 @@ function Experience({ experience, education, certification }) {
   );
 }
 
-function Stack({ skills }) {
+function Stack({ skills, developmentTools }) {
   return (
     <section id="stack" className="container page-section" aria-labelledby="stack-title">
       <div data-reveal>
@@ -327,6 +327,17 @@ function Stack({ skills }) {
             );
           })}
         </div>
+        <section className="toolkit" aria-labelledby="tools-title">
+          <h3 id="tools-title">AI development tools</h3>
+          <ul className="skill-grid tool-grid" role="list">
+            {developmentTools.map(({ name, description }) => (
+              <li className="tool-card" key={name}>
+                <h4>{name}</h4>
+                <p>{description}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
     </section>
   );
@@ -378,7 +389,10 @@ export default function App() {
         <Hero portfolio={portfolio} />
         <Work projects={portfolio.projects} />
         <Experience experience={portfolio.experience} education={portfolio.education} certification={portfolio.certification} />
-        <Stack skills={portfolio.skills} />
+        <Stack
+          skills={portfolio.skills}
+          developmentTools={portfolio.developmentTools ?? localPortfolio.developmentTools}
+        />
         <Contact email={portfolio.email} />
       </main>
       <footer className="site-footer">

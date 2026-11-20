@@ -346,6 +346,19 @@ h1 > span { display: block; color: var(--accent); }
 .skill-icon { display: grid; place-items: center; width: 2.65rem; height: 2.65rem; border: 1px solid #3d6047; border-radius: 0.5rem; color: var(--accent); background: #1b2b21; }
 .skill-card h3 { margin-top: 0.95rem; font-size: 1.22rem; letter-spacing: -0.035em; }
 .skill-card .tags { margin-top: 0.8rem; }
+.toolkit { margin-top: 2rem; padding-top: 1.65rem; border-top: 1px solid var(--line); }
+.toolkit h3 { font-size: clamp(1.4rem, 3vw, 1.85rem); letter-spacing: -0.04em; }
+.tool-grid { margin: 0.9rem 0 0; padding: 0; list-style: none; }
+.tool-card {
+  min-width: 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-left: 2px solid #668c70;
+  border-radius: 0.55rem;
+  background: var(--surface);
+}
+.tool-card h4 { color: var(--accent); font-size: 1.12rem; letter-spacing: -0.025em; }
+.tool-card p { margin-top: 0.35rem; color: var(--muted); line-height: 1.6; }
 
 .contact-section { padding-bottom: clamp(4rem, 8.2vw, 7rem); }
 .contact-panel {

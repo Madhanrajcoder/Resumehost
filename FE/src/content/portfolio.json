@@ -21,7 +21,8 @@
       "details": [
         "Implemented a ReAct agent with Google Gemini 2.5 Flash to select tools and use their results during translation.",
         "Built a FAISS-backed retrieval pipeline that supplies relevant glossary entries to the model for domain-specific translations.",
-        "Added tools for language detection and summarization and built a Streamlit interface for interactive translation."
+        "Added tools for language detection and summarization and built a Streamlit interface for interactive translation.",
+        "Separated agent orchestration, tools, glossary ingestion, and retrieval so each part could evolve independently."
       ]
     },
     {
@@ -48,7 +49,8 @@
         "details": [
           "Built and maintained Angular, React and Next.js applications, with reusable TypeScript components and responsive layouts.",
           "Developed a real-time React booking dashboard that reduced service response time by 25%. Improved application load time by 40% through frontend optimizations, including lazy loading and memoization.",
-          "Integrated REST APIs with Spring Boot teams and contributed to prototypes for LLM tool calling and retrieval-augmented generation."
+          "Integrated REST APIs with Spring Boot teams and contributed to prototypes for LLM tool calling and retrieval-augmented generation.",
+          "Improved issue resolution accuracy by 30% by analyzing historical data. Automated booking and scheduling anomaly detection, reducing customer complaints by 20%."
         ]
       },
       {
@@ -64,6 +66,24 @@
     { "id": "backend", "name": "Backend & APIs", "technologies": ["Java", "Spring Boot", "Spring MVC", "MongoDB", "REST APIs", "OpenAPI"] },
     { "id": "ai", "name": "Agentic AI", "technologies": ["LangChain", "RAG", "ReAct", "Tool calling", "Gemini", "FAISS"] },
     { "id": "quality", "name": "Testing & delivery", "technologies": ["JUnit", "Mockito", "Git", "Maven", "SonarQube", "CI/CD"] }
+  ],
+  "developmentTools": [
+    {
+      "name": "Cursor",
+      "description": "Explore unfamiliar code, make edits across files, and trace bugs in the editor."
+    },
+    {
+      "name": "Claude Cowork",
+      "description": "Summarize research, organize project notes, and draft technical documentation."
+    },
+    {
+      "name": "Codex",
+      "description": "Implement features, review diffs, and run tests to verify changes."
+    },
+    {
+      "name": "GitHub Copilot",
+      "description": "Get inline code suggestions, draft unit tests, and ask questions in the IDE."
+    }
   ],
   "education": {
     "degree": "B.Tech. in Electronics and Communication Engineering",
