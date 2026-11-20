@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
   Brain, Calculator, Cloud, Grid3X3, Leaf, Moon, RotateCcw, Star, Sun, Timer, Zap,
 } from 'lucide-react';
+import Leaderboard from './Leaderboard.jsx';
 import './games.css';
 
 const winningLines = [
@@ -109,7 +110,7 @@ function TicTacToe() {
   );
 }
 
-function MemoryMatch() {
+function MemoryMatch({ onScore }) {
   const [deck] = useState(() => shuffle([...memorySymbols, ...memorySymbols]));
   const [open, setOpen] = useState([]);
   const [matched, setMatched] = useState([]);
@@ -141,7 +142,10 @@ function MemoryMatch() {
     const nextMatched = [...matched, first, index];
     setMatched(nextMatched);
     setOpen([]);
-    if (nextMatched.length === deck.length) record(nextMove);
+    if (nextMatched.length === deck.length) {
+      record(nextMove);
+      onScore(nextMove);
+    }
   }
 
   const pairs = matched.length / 2;
@@ -183,7 +187,7 @@ const reactionLabels = {
   result: 'Play again',
 };
 
-function ReactionTime() {
+function ReactionTime({ onScore }) {
   const [phase, setPhase] = useState('idle');
   const [result, setResult] = useState(null);
   const [best, record] = useBestScore('reaction', Math.min);
@@ -202,6 +206,7 @@ function ReactionTime() {
       const elapsed = Math.max(1, Math.round(performance.now() - startedAt.current));
       setResult(elapsed);
       record(elapsed);
+      onScore(elapsed);
       setPhase('result');
       return;
     }
@@ -251,7 +256,7 @@ function newQuestion() {
   return { left, right, symbol, answer, choices: shuffle([answer, ...alternatives]) };
 }
 
-function QuickMath() {
+function QuickMath({ onScore }) {
   const [question, setQuestion] = useState(newQuestion);
   const [streak, setStreak] = useState(0);
   const [status, setStatus] = useState('Choose the correct answer.');
@@ -262,7 +267,10 @@ function QuickMath() {
     const nextStreak = correct ? streak + 1 : 0;
     setStreak(nextStreak);
     setStatus(correct ? `Correct! Streak: ${nextStreak}.` : `The answer was ${question.answer}. Try the next question.`);
-    if (correct) record(nextStreak);
+    if (correct) {
+      record(nextStreak);
+      onScore(nextStreak);
+    }
     setQuestion(newQuestion());
   }
 
@@ -284,15 +292,21 @@ function QuickMath() {
 
 const games = [
   { name: 'X and O', Icon: Grid3X3, Game: TicTacToe, instructions: 'Take turns on the same device. Get three Xs or Os in a row to win.' },
-  { name: 'Memory Match', Icon: Brain, Game: MemoryMatch, instructions: 'Flip two cards at a time and find all six matching pairs in as few attempts as possible.' },
-  { name: 'Reaction Time', Icon: Timer, Game: ReactionTime, instructions: 'Press Start, then wait for “Tap now!” and react as fast as you can.' },
-  { name: 'Quick Math', Icon: Calculator, Game: QuickMath, instructions: 'Pick the correct answer to build your streak. A wrong answer starts a new streak.' },
+  { id: 'memory', name: 'Memory Match', Icon: Brain, Game: MemoryMatch, best: Math.min, instructions: 'Flip two cards at a time and find all six matching pairs in as few attempts as possible.' },
+  { id: 'reaction', name: 'Reaction Time', Icon: Timer, Game: ReactionTime, best: Math.min, instructions: 'Press Start, then wait for “Tap now!” and react as fast as you can.' },
+  { id: 'math', name: 'Quick Math', Icon: Calculator, Game: QuickMath, best: Math.max, instructions: 'Pick the correct answer to build your streak. A wrong answer starts a new streak.' },
 ];
 
 export default function Games() {
   const [selected, setSelected] = useState(0);
   const [round, setRound] = useState(0);
-  const { name, Game, instructions } = games[selected];
+  const [scores, setScores] = useState({});
+  const active = games[selected];
+  const { id, name, Game, instructions, best } = active;
+
+  function recordScore(score) {
+    setScores((current) => ({ ...current, [id]: best(score, current[id] ?? score) }));
+  }
 
   return (
     <>
@@ -322,9 +336,10 @@ export default function Games() {
             Reset
           </button>
         </div>
-        <Game key={round} />
+        <Game key={round} onScore={recordScore} />
       </section>
       <p className="game-storage-note">Personal bests are saved in this browser.</p>
+      {id && <Leaderboard game={active} candidate={scores[id]} />}
     </>
   );
 }

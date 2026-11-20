@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import localPortfolio from './content/portfolio.json';
 import Games from './Games.jsx';
+import { apiBase } from './api.js';
 
 const navigation = [
   { id: 'work', label: 'Work' },
@@ -17,8 +18,7 @@ const skillIcons = {
   frontend: Monitor, backend: Server, ai: Sparkles, quality: GitBranch,
 };
 
-const apiOrigin = import.meta.env.VITE_API_URL?.replace(/\/+$/, '');
-const portfolioEndpoint = (apiOrigin || import.meta.env.DEV) ? `${apiOrigin ?? ''}/api/portfolio` : null;
+const portfolioEndpoint = apiBase === null ? null : `${apiBase}/api/portfolio`;
 
 function usePortfolio() {
   const [portfolio, setPortfolio] = useState(localPortfolio);

@@ -51,6 +51,20 @@ Copy-Item -LiteralPath BE/src/main/resources/portfolio.json -Destination FE/src/
 
 Render’s free backend sleeps after 15 idle minutes and may take about a minute to wake. The static site remains available and displays the bundled content while the API starts. Both services share the workspace’s included bandwidth and build minutes. [Render free-tier details](https://render.com/docs/free)
 
+## Enable shared game scores with Neon
+
+Create a free [Neon PostgreSQL project](https://neon.com/pricing) and open **Connect** in the Neon console. Copy the project’s JDBC connection details. In Render, open the **backend** service’s **Environment** page and set these variables. [Neon connection details](https://neon.com/docs/connect/connect-from-any-app) · [Render environment settings](https://render.com/docs/configure-environment-variables)
+
+| Key | Value |
+| --- | --- |
+| `GAMES_DATABASE_URL` | `jdbc:postgresql://<neon-host>/<database>?sslmode=verify-full&sslfactory=org.postgresql.ssl.DefaultJavaSSLFactory` |
+| `GAMES_DATABASE_USERNAME` | The database role from Neon |
+| `GAMES_DATABASE_PASSWORD` | The database password from Neon |
+
+Choose **Save and deploy** on the backend. Spring Boot applies the Flyway database migration on startup. Open **Games → Quick Math → View leaderboard** and create a test player. Use the player’s key on a second browser to confirm its saved scores follow it.
+
+Memory Match, Reaction Time, and Quick Math each rank the best score per player. Players explicitly share scores earned during their visit. The leaderboard uses browser-reported results for casual play. Local gameplay and browser scores are available when the database is unavailable.
+
 ## Hero artwork
 
 [hero-knot.jpg](FE/public/hero-knot.jpg) was generated with the built-in imagegen tool.

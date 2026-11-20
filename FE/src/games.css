@@ -148,9 +148,74 @@
 .math-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.55rem; }
 .math-option { min-height: 3.3rem; font: 650 1.1rem/1.2 var(--mono); }
 
+.leaderboard {
+  margin-top: 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  background: var(--surface);
+}
+
+.leaderboard-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+}
+
+.leaderboard-heading h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.2rem;
+}
+
+.leaderboard-heading svg { flex: none; color: var(--accent); }
+.leaderboard .button { min-height: 2.75rem; }
+.leaderboard button:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+.leaderboard-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+}
+
+.leaderboard-content > div { padding: clamp(1rem, 3vw, 1.5rem); }
+.leaderboard-account { border-left: 1px solid var(--line); }
+.leaderboard-content h4 { margin-bottom: 0.55rem; font-size: 1.1rem; overflow-wrap: anywhere; }
+.leaderboard-content p, .leaderboard-content label { color: var(--muted); line-height: 1.55; }
+.leaderboard-content p + p { margin-top: 0.45rem; }
+.leaderboard-content strong { color: #e6f3e8; }
+.leaderboard-content h4 + p, .leaderboard-content ol { margin-bottom: 0.85rem; }
+.leaderboard-content ol { padding-left: 1.5rem; }
+.leaderboard-content li { padding: 0.35rem 0; }
+.leaderboard-content li::marker { color: var(--accent); font-family: var(--mono); }
+.leaderboard-content li span { overflow-wrap: anywhere; }
+.leaderboard-content li strong { float: right; margin-left: 0.65rem; }
+.leaderboard-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.leaderboard-actions .button[aria-pressed='true'] { border-color: #86b993; color: var(--accent); }
+.leaderboard-content form, .leaderboard-content details { display: grid; gap: 0.55rem; margin-top: 0.75rem; }
+.leaderboard-content input {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #49604e;
+  border-radius: 0.5rem;
+  background: #0c140e;
+  color: #eff5f0;
+  font: inherit;
+}
+
+.leaderboard-content summary { margin-bottom: 0.4rem; cursor: pointer; color: var(--accent); }
+.leaderboard-content form .button { justify-self: start; }
+.leaderboard-account > .button { margin: 0.65rem 0 0.25rem; }
+.leaderboard-account > [role='status']:not(:empty) { margin-top: 0.65rem; }
+
 @media (max-width: 46rem) {
   .game-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .game-layout { grid-template-columns: 1fr; }
+  .game-layout, .leaderboard-content { grid-template-columns: 1fr; }
   .game-play { min-height: 0; }
-  .game-progress { border-top: 1px solid var(--line); border-left: 0; }
+  .game-progress, .leaderboard-account { border-top: 1px solid var(--line); border-left: 0; }
 }
