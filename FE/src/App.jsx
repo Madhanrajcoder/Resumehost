@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  Award, Braces, Check, Code2, Copy, Database, GitBranch, GraduationCap,
+  Award, Braces, Check, Code2, Copy, Database, Download, GitBranch, GraduationCap,
   Languages, Mail, MapPin, Menu, Monitor, Server, Sparkles, X,
 } from 'lucide-react';
 import localPortfolio from './content/portfolio.json';
@@ -129,6 +129,9 @@ function Hero({ portfolio }) {
           <p className="intro">{portfolio.summary}</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#work">Explore my work</a>
+            <a className="button button-outline" href={`${import.meta.env.BASE_URL}Madhanraj-C-Resume.pdf`} download>
+              <Download size={18} aria-hidden="true" /> Download résumé
+            </a>
             <a className="button button-outline" href="#contact"><Mail size={18} aria-hidden="true" /> Get in touch</a>
           </div>
           <p className="hero-location"><MapPin size={16} aria-hidden="true" /> {portfolio.location}</p>
