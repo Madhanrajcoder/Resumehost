@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "name": "Madhanraj C",
+  "email": "madhancanakaraj2001@gmail.com",
+  "location": "Chennai, India",
+  "summary": "I build responsive web apps with React, connect them to Java and Spring Boot services, and explore practical uses for agentic AI.",
+  "metrics": [
+    { "value": "4+", "label": "Years of experience" },
+    { "value": "40%", "label": "Faster application load time" },
+    { "value": "25%", "label": "Lower service response time" },
+    { "value": "2×", "label": "Annual Top Performer at Virtusa" }
+  ],
+  "projects": [
+    {
+      "id": "translator",
+      "category": "Agentic AI · Proof of concept",
+      "name": "Agentic AI Translator Bot",
+      "description": "A translation assistant that retrieves domain-specific glossary entries before generating a translation.",
+      "technologies": ["Python", "LangChain", "Gemini", "FAISS", "Streamlit"],
+      "role": "AI Engineer / LLM Developer",
+      "details": [
+        "Implemented a ReAct agent with Google Gemini 2.5 Flash to select tools and use their results during translation.",
+        "Built a FAISS-backed retrieval pipeline that supplies relevant glossary entries to the model for domain-specific translations.",
+        "Added tools for language detection and summarization and built a Streamlit interface for interactive translation."
+      ]
+    },
+    {
+      "id": "marketplace",
+      "category": "Backend engineering · Personal project",
+      "name": "Marketplace Backend API",
+      "description": "A Java and Spring Boot backend for a classifieds marketplace, covering accounts, listings and search.",
+      "technologies": ["Java", "Spring Boot", "MongoDB", "Swagger"],
+      "role": "Backend Developer",
+      "details": [
+        "Designed REST endpoints for user management, product listings and search.",
+        "Integrated MongoDB for flexible storage of listings and related data.",
+        "Added request validation, exception handling and interactive API documentation with Swagger."
+      ]
+    }
+  ],
+  "experience": {
+    "company": "Virtusa",
+    "location": "Chennai, India",
+    "roles": [
+      {
+        "title": "Software Engineer – Technology",
+        "period": "May 2022 – Present",
+        "details": [
+          "Built and maintained Angular, React and Next.js applications, with reusable TypeScript components and responsive layouts.",
+          "Developed a real-time React booking dashboard that reduced service response time by 25%. Improved application load time by 40% through frontend optimizations, including lazy loading and memoization.",
+          "Integrated REST APIs with Spring Boot teams and contributed to prototypes for LLM tool calling and retrieval-augmented generation."
+        ]
+      },
+      {
+        "title": "Intern – Technology",
+        "period": "Dec 2021 – Mar 2022",
+        "details": []
+      }
+    ],
+    "awards": "Top Performer in FY24 and FY25. Star Performer in Q4 of both years."
+  },
+  "skills": [
+    { "id": "frontend", "name": "Frontend", "technologies": ["React", "Angular", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS"] },
+    { "id": "backend", "name": "Backend & APIs", "technologies": ["Java", "Spring Boot", "Spring MVC", "MongoDB", "REST APIs", "OpenAPI"] },
+    { "id": "ai", "name": "Agentic AI", "technologies": ["LangChain", "RAG", "ReAct", "Tool calling", "Gemini", "FAISS"] },
+    { "id": "quality", "name": "Testing & delivery", "technologies": ["JUnit", "Mockito", "Git", "Maven", "SonarQube", "CI/CD"] }
+  ],
+  "education": {
+    "degree": "B.Tech. in Electronics and Communication Engineering",
+    "school": "Sri Manakula Vinayagar Engineering College",
+    "year": "2022",
+    "gpa": "8.43"
+  },
+  "certification": {
+    "name": "Oracle Certified Associate, Java SE 8",
+    "year": "2022"
+  }
+}
