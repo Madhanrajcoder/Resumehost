@@ -4,11 +4,13 @@ import {
   Languages, Mail, MapPin, Menu, Monitor, Server, Sparkles, X,
 } from 'lucide-react';
 import localPortfolio from './content/portfolio.json';
+import Games from './Games.jsx';
 
 const navigation = [
   { id: 'work', label: 'Work' },
   { id: 'experience', label: 'Experience' },
   { id: 'stack', label: 'Tech stack' },
+  { id: 'games', label: 'Games' },
 ];
 
 const skillIcons = {
@@ -393,6 +395,12 @@ export default function App() {
           skills={portfolio.skills}
           developmentTools={portfolio.developmentTools ?? localPortfolio.developmentTools}
         />
+        <section id="games" className="container page-section" aria-labelledby="games-title">
+          <div data-reveal>
+            <div className="section-heading"><h2 id="games-title">Games</h2></div>
+            <Games />
+          </div>
+        </section>
         <Contact email={portfolio.email} />
       </main>
       <footer className="site-footer">
